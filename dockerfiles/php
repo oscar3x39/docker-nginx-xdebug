@@ -10,6 +10,7 @@ RUN apt-get install -y build-essential
 RUN pecl install mcrypt-1.0.1
 RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-enable pdo pdo_mysql mcrypt
+RUN docker-php-ext-install opcache
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 

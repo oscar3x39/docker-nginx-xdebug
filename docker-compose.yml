@@ -20,7 +20,8 @@ services:
             dockerfile: ./dockerfiles/php
         container_name: php
         volumes:
-            - ./src:/var/www/html
-            - ./settings/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./src:/var/www/html:cache
+            - ./settings/php-ini/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./settings/php-ini/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
         networks:
             - lan
