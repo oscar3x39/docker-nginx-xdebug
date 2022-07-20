@@ -12,16 +12,14 @@ services:
         volumes:
             - ./src:/var/www/html
             - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-        networks:
-            - lan
     php:
         build:
             context: .
             dockerfile: ./dockerfiles/php
         container_name: php
         volumes:
-            - ./src:/var/www/html:cache
+            - ./src:/var/www/html
             - ./settings/php-ini/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
             - ./settings/php-ini/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
-        networks:
-            - lan
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
