@@ -18,4 +18,4 @@ Install php debug plugin for vscode
 
 ## Listening to debug
 
-<img src="https://github.com/oscar3x39/docker-nginx-xdebug/blob/master/screenshot1.png">
+<img src="https://github.com/oscar3x39/docker-nginx-xdebug/blob/master/screenshot2.png">
