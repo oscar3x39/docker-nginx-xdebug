@@ -1,7 +1,7 @@
 version: '3.2'
 
 networks:
-  lan:
+  net:
 
 services:
     nginx:
@@ -12,14 +12,35 @@ services:
         volumes:
             - ./src:/var/www/html
             - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    php:
+        networks:
+            - net
+    php72:
         build:
             context: .
-            dockerfile: ./dockerfiles/php
-        container_name: php
+            dockerfile: ./dockerfiles/php72
+        container_name: php72
         volumes:
             - ./src:/var/www/html
             - ./settings/php-ini/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
             - ./settings/php-ini/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
         extra_hosts:
             - "host.docker.internal:host-gateway"
+        profiles:
+            - php72
+        networks:
+            - net
+    php80:
+        build:
+            context: .
+            dockerfile: ./dockerfiles/php80
+        container_name: php80
+        volumes:
+            - ./src:/var/www/html
+            - ./settings/php-ini/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./settings/php-ini/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        profiles:
+            - php80
+        networks:
+            - net
